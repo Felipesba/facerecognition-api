@@ -14,6 +14,15 @@ const	database = {
 		password: "123",
 		entries: 0 ,
 		joined: new Date()
+	},
+
+	{
+		id: "09",
+		name: "Yanger",
+		email: 'yan@gmail.com',
+		password: "123",
+		entries: 0 ,
+		joined: new Date()
 	}
 	]
 }
@@ -43,16 +52,51 @@ app.post('/signin', (req,res) => {
 
 //Register = registro do usuario 
 app.post('/register', (req,res) => {
-	const {name, email, password} = req.body;
+	const {id, name, email, password} = req.body;
 
 	database.users.push(
 	{
+		"id": id,
 		"name": name,
 		"email": email,
 		"password": password
 	});
 	res.json(database.users[database.users.length-1]);
 })
+
+// /profile/:userId --> get = user
+app.post('/profile/:id', (req,res) => {
+	const {id} = req.params;
+	let found = false;
+
+	database.users.forEach(users => {
+		if (users.id === id) {
+			found = true;
+			return res.json(users);
+		}
+		})
+		 if (!found) {
+		 	res.status(404).json('Id inexistente...');
+		 }
+	})
+
+//image --> put --> user count 
+app.put('/image', (req,res) => {
+	const {id} = req.body;
+	let found = false;
+
+	database.users.forEach(users => {
+		if (users.id === id) {
+			found = true;
+			users.entries++;
+			return res.json(users.entries);
+			}
+		})
+		 if (!found) {
+		 	res.status(404).json('Id inexistente...');
+		 }
+	})
+
 
 
 
@@ -64,4 +108,3 @@ Endpoints
 /profile/:userId --> get = user
 /image --> put --> user count 
 */
-
