@@ -56,14 +56,13 @@ app.post('/signin', (req,res) => {
 
 //Register = registro do usuario 
 app.post('/register', (req,res) => {
-	const {id, name, email, password} = req.body;
-
+	const {name, email, password} = req.body;
 	database.users.push(
 	{
-		"id": id,
 		"name": name,
 		"email": email,
-		"password": password
+		"entries": 0,
+		"joined": new Date()
 	});
 	res.json(database.users[database.users.length-1]);
 })
