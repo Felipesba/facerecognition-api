@@ -59,9 +59,7 @@ app.listen(process.env.PORT || 3000, () => {
 })
 
 //EndPoint = root /
-app.get('/', (req, res) => {
-	res.json(database.users);
-})
+app.get('/', (req, res) => {res.json("IT`s WORKING")})
 
 //EndPoint = signin 
 app.post('/signin', (req, res) => {signin.handleSignin(req, res, db, bcrypt)})
