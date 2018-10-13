@@ -16,7 +16,7 @@ const db = knex({
   	ssl: true,
   }
 });
-console.log(db);
+
 
 // db.select().table('users').then(data => {
 // 	console.log(data);
