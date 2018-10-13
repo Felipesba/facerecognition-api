@@ -15,6 +15,7 @@ const db = knex({
     connectionString: process.env.DATABASE_URL,
   	ssl: true,
   }
+  console.log(DATABASE_URL)
 });
 
 
